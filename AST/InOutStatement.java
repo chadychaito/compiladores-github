@@ -4,27 +4,28 @@ import java.util.*;
 
 public class InOutStatement extends Statement{
 
-	public InOutStatement(String tipo, ArrayList<Variable> expr_list){
+	public InOutStatement(String tipo, ArrayList<Variable> id_list){
 		this.tipo = tipo;
-		this.expr_list = expr_list;
+		this.id_list = id_list;
 	}
 
 
 	public void genC(){
-		if(this.tipo == "READ"){
+		System.out.println(this.tipo);
+		if(this.tipo == "write"){
 			System.out.println("printf (");
 		}
 		else{
 			System.out.println("scanf (");
 		}
 
-		for (Variable expr : expr_list){
-			expr.genC();
+		for (Variable id : id_list){
+			id.genC();
 		}
 
 		System.out.println(");");
 	}
 	
 	private String tipo;
-	private ArrayList<Variable> expr_list;
+	private ArrayList<Variable> id_list;
 }

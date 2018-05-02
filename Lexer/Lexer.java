@@ -135,7 +135,8 @@ public class Lexer {
 						if (temp == null){ //nao eh palavra
 
 								token = Symbol.IDENT;
-								stringValue = aux.toString();
+								System.out.println("Ident:" + aux);
+								this.stringValue = aux.toString();
 						}
 						else {
 								token = temp;
@@ -188,6 +189,9 @@ public class Lexer {
 												aux = aux.append(input[tokenPos]); //vai concatenando todas as letras, ainda eh string
 												tokenPos++;
 											}
+											//O que está escrito na String
+											this.stringValue = aux.toString();
+
 											tokenPos++;
 
 											if(aux.length() > 81){
@@ -258,7 +262,7 @@ public class Lexer {
     public Symbol token;
     private String stringValue;
     private int numberValue;
-		private float floatNumberValue;
+	private float floatNumberValue;
     private char charValue;
 
     private int  tokenPos;

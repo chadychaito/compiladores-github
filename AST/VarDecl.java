@@ -2,13 +2,11 @@ package AST;
 
 import java.util.*;
 
-public class FuncDecl{
+public class VarDecl{
 
 	public FuncDecl(String tipo, String ident, ArrayList<Variable> param_list, FuncBody f_body){
 		this.tipo = tipo;
-		this.ident = ident;
-		this.param_list = param_list;
-		this.f_body = f_body;
+		this.id_list = id_list;
 	}
 
 	public void genC() {
@@ -29,11 +27,8 @@ public class FuncDecl{
 
         System.out.println(");");
 	
-        f_body.genC();
     }
 
 	private String tipo;
-	private String ident;
-	private ArrayList<Variable> param_list;
-	private FuncBody f_body;
+	private ArrayList<Variable> id_list;
 }

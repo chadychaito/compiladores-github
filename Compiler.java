@@ -45,10 +45,9 @@ public class Compiler {
 
   	//id -> IDENTIFIER
 	public String id(){
-		String aux = "";
+		String aux = lexer.getStringValue();
 		if(lexer.token != Symbol.IDENT)
 			error.signal("Indentificador nao encontrado");
-		aux = lexer.getStringValue();
 		lexer.nextToken();
 
 		return aux;
@@ -110,8 +109,6 @@ public class Compiler {
 			lexer.nextToken();
 			String ident = id();
 
-			System.out.println("dddas" + aux + ident);
-
 			//Se o sinal não é de recebe
 			if(lexer.token != Symbol.ASSIGN){
 				error.signal("Voce precisa inicializar a variavel");
@@ -162,7 +159,7 @@ public class Compiler {
     	//Verifica se tem declaração de INT ou FLOAT
 		if(lexer.token == Symbol.INT || lexer.token == Symbol.FLOAT){
 			String tipo = var_type(); // Var_type retorna "STRING" com tipo
-			id_list(var, tipo);
+			id_list(var);
 
       		//Se não tiver ponto e virgula
 			if(lexer.token != Symbol.SEMICOLON)
@@ -194,18 +191,20 @@ public class Compiler {
 		return aux;
 	}
 
-  	//id_list -> id id_tail
-	public void id_list(ArrayList<Variable> var, String tipo){
-		var.add(new Variable(tipo, id(), ""));
-		id_tail(var, tipo);
+
+  	//id_list -> id id_tail 
+	public void id_list(ArrayList<Variable> var){
+		String id = id();
+		var.add(new Variable("", id , ""));
+		id_tail(var);
 	}
 
   	//id_tail -> , id id_tail | empty
-	public void id_tail(ArrayList<Variable> var, String tipo){
+	public void id_tail(ArrayList<Variable> var){
 		if(lexer.token == Symbol.COMMA){
 			lexer.nextToken();
-			var.add(new Variable(tipo, id(), ""));
-			id_tail(var, tipo);
+			var.add(new Variable("", id(), ""));
+			id_tail(var);
 		}
 	}
 
@@ -230,7 +229,6 @@ public class Compiler {
   	//param_decl -> var_type id
 	public Variable param_decl(){
 		String tipo = var_type();
-		System.out.println("=====" + tipo);
 		String ident = id();
 		return new Variable(tipo, ident, "");
 	}
@@ -428,7 +426,7 @@ public class Compiler {
 		lexer.nextToken();
 
 		ArrayList<Variable> var = new ArrayList<Variable>();
-		id_list(var, aux);
+		id_list(var);
 
 		//Se não tiver ' ) '
 		if(lexer.token != Symbol.RPAR){
@@ -461,7 +459,7 @@ public class Compiler {
 		lexer.nextToken();
 
 		ArrayList<Variable> var = new ArrayList<Variable>();
-		id_list(var, aux);
+		id_list(var);
 
 		//Se não tiver ' ) '
 		if(lexer.token != Symbol.RPAR){
@@ -621,7 +619,6 @@ public class Compiler {
 			lexer.nextToken();
 		}
 		else{
-			System.out.println(lexer.token);
 			error.signal("Faltou expressão, ou ID, ou INTLITERAL ou FLOATLITERAL");
 		}
 	}

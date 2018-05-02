@@ -14,7 +14,12 @@ public class Variable {
 
     public void genC() {
         if(this.valor != "") 
-            System.out.println(this.tipo + " " + this.ident + " = " + this.valor + ";");
+            if(this.tipo == "string"){
+                 System.out.println("char[] " + this.ident + " = " + '"' + this.valor + '"'+ ";");
+            }
+            else{
+                System.out.println(this.tipo + " " + this.ident + " = " + this.valor + ";");
+            }
         else
             System.out.println(this.tipo + " " + this.ident);
 
