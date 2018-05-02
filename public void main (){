@@ -1,0 +1,7 @@
+public class ConcatenacaoSimples {
+    public static void main(String[] args) {
+        String palavra1 = "tele";
+        String palavra2 = "fone";
+        System.out.println(palavra1 + palavra2);
+     }
+}

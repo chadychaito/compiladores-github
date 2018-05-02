@@ -1,0 +1,8 @@
+PROGRAM nomedoprograma
+BEGIN
+    FUNCTION VOID main(INT a, INT b)
+    BEGIN
+        STRING texto := "hello world!" ;
+        WRITE ( texto );
+    END
+END
