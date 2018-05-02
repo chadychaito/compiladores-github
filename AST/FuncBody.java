@@ -10,9 +10,17 @@ public class FuncBody{
 	}
 
 	public void genC(){
-		for(Variable e: decl){
-			e.genC();
-		}
+		if(!decl.isEmpty()){
+			Iterator it = decl.iterator();
+	        while(it.hasNext()){
+	        	Variable e = (Variable) it.next();
+	        	e.genC();
+	        	if(it.hasNext()){
+	        		System.out.println(",");
+	        	}
+
+	        }
+		} 
 		for(Statement stmt: list_stmt){
 			stmt.genC();
 		}

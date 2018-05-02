@@ -9,9 +9,17 @@ public class PgmBody{
 	}
 
 	public void genC(){
-		for(Variable e: decl){
-			e.genC();
-		}
+		if(!decl.isEmpty()){
+			Iterator it = decl.iterator();
+	        while(it.hasNext()){
+	        	Variable e = (Variable) it.next();
+	        	e.genC();
+	        	if(it.hasNext()){
+	        		System.out.println(",");
+	        	}
+
+	        }
+		} 
 		for(FuncDecl f: func_declarations){
 			f.genC();
 		}

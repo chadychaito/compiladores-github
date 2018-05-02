@@ -159,7 +159,7 @@ public class Compiler {
     	//Verifica se tem declaração de INT ou FLOAT
 		if(lexer.token == Symbol.INT || lexer.token == Symbol.FLOAT){
 			String tipo = var_type(); // Var_type retorna "STRING" com tipo
-			id_list(var);
+			id_list(tipo, var);
 
       		//Se não tiver ponto e virgula
 			if(lexer.token != Symbol.SEMICOLON)
@@ -193,9 +193,9 @@ public class Compiler {
 
 
   	//id_list -> id id_tail 
-	public void id_list(ArrayList<Variable> var){
+	public void id_list(String tipo, ArrayList<Variable> var){
 		String id = id();
-		var.add(new Variable("", id , ""));
+		var.add(new Variable(tipo, id , ""));
 		id_tail(var);
 	}
 
@@ -426,7 +426,7 @@ public class Compiler {
 		lexer.nextToken();
 
 		ArrayList<Variable> var = new ArrayList<Variable>();
-		id_list(var);
+		id_list("", var);
 
 		//Se não tiver ' ) '
 		if(lexer.token != Symbol.RPAR){
@@ -459,7 +459,7 @@ public class Compiler {
 		lexer.nextToken();
 
 		ArrayList<Variable> var = new ArrayList<Variable>();
-		id_list(var);
+		id_list("", var);
 
 		//Se não tiver ' ) '
 		if(lexer.token != Symbol.RPAR){

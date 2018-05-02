@@ -135,7 +135,6 @@ public class Lexer {
 						if (temp == null){ //nao eh palavra
 
 								token = Symbol.IDENT;
-								System.out.println("Ident:" + aux);
 								this.stringValue = aux.toString();
 						}
 						else {

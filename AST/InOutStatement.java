@@ -11,7 +11,6 @@ public class InOutStatement extends Statement{
 
 
 	public void genC(){
-		System.out.println(this.tipo);
 		if(this.tipo == "write"){
 			System.out.println("printf (");
 		}
@@ -19,9 +18,17 @@ public class InOutStatement extends Statement{
 			System.out.println("scanf (");
 		}
 
-		for (Variable id : id_list){
-			id.genC();
-		}
+		if(!id_list.isEmpty()){
+			Iterator it = id_list.iterator();
+	        while(it.hasNext()){
+	        	Variable e = (Variable) it.next();
+	        	e.genC();
+	        	if(it.hasNext()){
+	        		System.out.println(",");
+	        	}
+
+	        }
+		} 
 
 		System.out.println(");");
 	}
