@@ -10,9 +10,14 @@ public class Program{
 		this.pgm_body = pb;
 	}
 
-	public void genC(){
-		System.out.println("#include <stdio.h> \n#include <stlib.h>\n#include <string.h>");
-		pgm_body.genC();
+	public void genC(PW pw){
+		pw.println("#include <stdio.h>");
+		pw.println("#include <stlib.h>");
+		pw.println("#include <string.h>");
+		pw.println("");
+		
+		pgm_body.genC(pw);
+
 		System.out.println("}");
 	}
 }

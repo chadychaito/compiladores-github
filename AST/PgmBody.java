@@ -8,20 +8,30 @@ public class PgmBody{
 		this.func_declarations = f_declarations;
 	}
 
-	public void genC(){
+	public void genC(PW pw){
 		if(!decl.isEmpty()){
 			Iterator it = decl.iterator();
+	        
+	        /* Enquanto houve proximo */
 	        while(it.hasNext()){
 	        	Variable e = (Variable) it.next();
-	        	e.genC();
+	        	
+	        	e.genC(pw);
+	        	
+	        	/* Se tem proximo */
 	        	if(it.hasNext()){
-	        		System.out.println(",");
+	        		pw.print(",");
 	        	}
 
 	        }
-		} 
+	        pw.print(";");
+
+	        pw.println("");
+	        pw.println("");
+		}
+ 
 		for(FuncDecl f: func_declarations){
-			f.genC();
+			f.genC(pw);
 		}
 	}
 

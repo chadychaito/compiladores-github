@@ -356,7 +356,7 @@ public class Compiler {
   		}
 
   		//read_stmt
-		if(lexer.token == Symbol.READ){
+		else if(lexer.token == Symbol.READ){
 			String aux = lexer.token.toString();
 			ArrayList<Variable> r_stmt = read_stmt();
 			aux_stmt = new InOutStatement(aux, r_stmt);

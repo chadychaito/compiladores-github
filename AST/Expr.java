@@ -16,8 +16,8 @@ public class Expr{
         this.expr = str_expr;
     }
 
-    public void genC(){
-        System.out.println(expr);
+    public void genC(PW pw){
+        pw.print(expr);
     }
 
 

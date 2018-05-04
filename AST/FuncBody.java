@@ -9,20 +9,24 @@ public class FuncBody{
 		this.list_stmt = list_stmt;
 	}
 
-	public void genC(){
+	public void genC(PW pw){
 		if(!decl.isEmpty()){
+
 			Iterator it = decl.iterator();
 	        while(it.hasNext()){
 	        	Variable e = (Variable) it.next();
-	        	e.genC();
+	        	e.genC(pw);
 	        	if(it.hasNext()){
-	        		System.out.println(",");
+	        		pw.print(",");
 	        	}
 
 	        }
+	        pw.println(";");
+	        pw.println("");
+	        pw.println("");
 		} 
 		for(Statement stmt: list_stmt){
-			stmt.genC();
+			stmt.genC(pw);
 		}
 	}
 

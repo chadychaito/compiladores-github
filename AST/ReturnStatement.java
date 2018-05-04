@@ -9,9 +9,10 @@ public class ReturnStatement extends Statement{
 	}
 
 
-	public void genC(){
-		System.out.println("return ");
-		this.expr.genC();
+	public void genC(PW pw){
+		pw.print("return ");
+		expr.genC(pw);
+		pw.println(";");
 	}
 	
 	private String tipo;

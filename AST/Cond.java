@@ -16,10 +16,10 @@ public class Cond{
 	}
 
 
-	public void genC(){
-		condL.genC();
+	public void genC(PW pw){
+		condL.genC(pw);
 		System.out.println(compop);
-		condR.genC();
+		condR.genC(pw);
 	}
 
 	public String getCompop(){

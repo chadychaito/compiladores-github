@@ -10,27 +10,28 @@ public class InOutStatement extends Statement{
 	}
 
 
-	public void genC(){
+	public void genC(PW pw){
 		if(this.tipo == "write"){
-			System.out.println("printf (");
+			pw.print("printf (");
 		}
 		else{
-			System.out.println("scanf (");
+			pw.print("scanf (");
 		}
 
 		if(!id_list.isEmpty()){
 			Iterator it = id_list.iterator();
 	        while(it.hasNext()){
 	        	Variable e = (Variable) it.next();
-	        	e.genC();
+	        	e.genC(pw);
 	        	if(it.hasNext()){
-	        		System.out.println(",");
+	        		pw.print(",");
 	        	}
 
 	        }
 		} 
 
-		System.out.println(");");
+		pw.print(");");
+		pw.println("");
 	}
 	
 	private String tipo;

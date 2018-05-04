@@ -4,20 +4,20 @@ import java.util.*;
 
 public class ForStatement extends Statement{
 
-	public void genC(){
+	public void genC(PW pw){
 		System.out.println("for(");
 		if(this.id != ""){
 			System.out.println(this.id + " = " + this.exprL + ";");
 		}
 		if(this.cond.getCompop() != ""){
-			cond.genC();
+			cond.genC(pw);
 		}
 		if(this.id2 != ""){
 			System.out.println(this.id2 + " = " + this.exprR + ";");
 		}
 		System.out.println("){\n");
 		for(Statement e: stmt){
-			e.genC();
+			e.genC(pw);
 		}
 
 	}

@@ -10,20 +10,20 @@ public class IfStatement extends Statement{
 		this.else_part = else_part;
 	}
 
-	public void genC(){
+	public void genC(PW pw){
 		System.out.println("if (");
-		cond.genC();
+		cond.genC(pw);
 		System.out.println("){\n");
 		
 		for(Statement stmt : if_part){
-			stmt.genC();
+			stmt.genC(pw);
 		}
 		System.out.println("}\n");
 
 		if(!else_part.isEmpty()){
 			System.out.println("else {\n");
 			for(Statement stmt : else_part){
-				stmt.genC();
+				stmt.genC(pw);
 			}
 			System.out.println("}");
 		}

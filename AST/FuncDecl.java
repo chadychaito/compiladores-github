@@ -11,25 +11,27 @@ public class FuncDecl{
 		this.f_body = f_body;
 	}
 
-	public void genC() {
-        System.out.println(this.tipo + " " + this.ident + "(");
-
+	public void genC(PW pw) {
+        pw.print(this.tipo + " " + this.ident + "(");
         // Se existe param_decl_list 
         if(!param_list.isEmpty()){
 	        Iterator it = param_list.iterator();
+	        
 	        while(it.hasNext()){
 	        	Variable e = (Variable) it.next();
-	        	e.genC();
+	        	
+	        	e.genC(pw);
+	        	
 	        	if(it.hasNext()){
-	        		System.out.println(",");
+	        		pw.print(",");
 	        	}
 
 	        }
 	    }
 
-        System.out.println(");");
+        pw.println("){");
 	
-        f_body.genC();
+        f_body.genC(pw);
     }
 
 	private String tipo;

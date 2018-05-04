@@ -1,5 +1,7 @@
 PROGRAM nomedoprograma
 BEGIN
+
+    INT x , u , cr ;
     FUNCTION VOID main()
     BEGIN
         INT a , b , r ;

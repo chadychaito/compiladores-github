@@ -8,21 +8,23 @@ public class CompositeStatement extends Statement{
 		this.expr = expr;
 	}
 
-	public void genC(){
-		System.out.println(ident);
+	public void genC(PW pw){
+		pw.print(this.ident);
 		String aux = expr.getExpr();
 		
 		//Se call_expr
 		if(aux.charAt(0) == '('){
-			System.out.println(" (");
-			expr.genC();
-			System.out.println(");");
+			pw.print(" (");
+			expr.genC(pw);
+			pw.print(");");
 		}
 		else{
-			System.out.println(" = ");
-			expr.genC();
-			System.out.println(";");
+			pw.print(" = ");
+			expr.genC(pw);
+			pw.print(";");
 		}
+
+		pw.println("");
 	}
 
 	//Duvida como saber quanto precisa colocar := ou ()

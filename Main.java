@@ -44,10 +44,14 @@ public class Main {
                 throw new RuntimeException();
             }
 
+            
+            PrintWriter printWriter = new PrintWriter(System.out, true);
+            PW pw = new PW();
+            pw.set(printWriter); 
 
             Compiler compiler = new Compiler();
             Program p = compiler.compile(input);
-            p.genC();
+            p.genC(pw);
             }
     }
 }
