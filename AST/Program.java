@@ -2,9 +2,6 @@ package AST;
 import java.util.*;
 
 public class Program{
-	private String id;
-	private PgmBody pgm_body;
-
 	public Program(String id, PgmBody pb){
 		this.id = id;
 		this.pgm_body = pb;
@@ -18,6 +15,10 @@ public class Program{
 		
 		pgm_body.genC(pw);
 
-		System.out.println("}");
+		pw.println("}");
 	}
+
+	
+	private String id;
+	private PgmBody pgm_body;
 }

@@ -18,7 +18,7 @@ public class Cond{
 
 	public void genC(PW pw){
 		condL.genC(pw);
-		System.out.println(compop);
+		pw.print(" " + compop + " ");
 		condR.genC(pw);
 	}
 

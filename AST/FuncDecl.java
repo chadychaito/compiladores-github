@@ -30,7 +30,7 @@ public class FuncDecl{
 	    }
 
         pw.println("){");
-	
+		
         f_body.genC(pw);
     }
 

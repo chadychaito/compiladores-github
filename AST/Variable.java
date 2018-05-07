@@ -15,10 +15,10 @@ public class Variable {
     public void genC(PW pw) {
         if(this.valor != "") 
             if(this.tipo == "string"){
-                 pw.print("char[] " + this.ident + " = " + '"' + this.valor + '"'+ ";");
+                 pw.print("char[] " + this.ident + " = " + '"' + this.valor + '"');
             }
             else{
-                pw.print(this.tipo + " " + this.ident + " = " + this.valor + ";");
+                pw.print(this.tipo + " " + this.ident + " = " + this.valor );
             }
         else{
             if(this.tipo != "")
@@ -27,6 +27,7 @@ public class Variable {
                 pw.print(this.ident);
             }
         }
+
     }
 
 }

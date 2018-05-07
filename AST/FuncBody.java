@@ -23,7 +23,6 @@ public class FuncBody{
 	        }
 	        pw.println(";");
 	        pw.println("");
-	        pw.println("");
 		} 
 		for(Statement stmt: list_stmt){
 			stmt.genC(pw);

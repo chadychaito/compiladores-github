@@ -326,7 +326,7 @@ public class Compiler {
   	//stmt_tail -> stmt stmt_tail | empty
 	public void stmt_tail(ArrayList<Statement> list_stmt){
     	//Verifica se STMT_TAIL não é EMPTY
-		if(lexer.token == Symbol.IDENT || lexer.token == Symbol.READ || lexer.token == Symbol.WRITE || lexer.token == Symbol.RETURN || lexer.token == Symbol.FOR){
+		if(lexer.token == Symbol.IDENT || lexer.token == Symbol.READ || lexer.token == Symbol.WRITE || lexer.token == Symbol.RETURN || lexer.token == Symbol.IF || lexer.token == Symbol.FOR){
 			list_stmt.add(stmt());
 			stmt_tail(list_stmt);
 		}
@@ -335,6 +335,7 @@ public class Compiler {
   	//stmt -> id assign_stmt | read_stmt | write_stmt | return_stmt | if_stmt | for_stmt | id call_expr
 	public Statement stmt(){
   		Statement aux_stmt = null;
+
   		//id
   		if(lexer.token == Symbol.IDENT){
   			String ident = id();
@@ -610,12 +611,12 @@ public class Compiler {
 
 		//Se for INT
 		else if(lexer.token == Symbol.INT){
-			expr.setExpr(expr.getExpr()+lexer.token.toString());
+			expr.setExpr(expr.getExpr()+lexer.getNumberValue());
 			lexer.nextToken();
 		}
 		//Se for FLOAT
 		else if(lexer.token == Symbol.FLOAT){
-			expr.setExpr(expr.getExpr()+lexer.token.toString());
+			expr.setExpr(expr.getExpr()+lexer.getFloatNumberValue());
 			lexer.nextToken();
 		}
 		else{
@@ -650,10 +651,7 @@ public class Compiler {
 		if(lexer.token != Symbol.IF){
 			error.signal("Faltou IF");
 		}
-		
 		lexer.nextToken();
-
-
 
 		//Se não tem '( '
 		if(lexer.token != Symbol.LPAR){
@@ -682,6 +680,7 @@ public class Compiler {
 		if(lexer.token != Symbol.ENDIF){
 			error.signal("Faltou ENDIF");
 		}
+
 
 		IfStatement if_st = new IfStatement(aux_cond, aux_stmt, aux_else_stmt);
 		lexer.nextToken();

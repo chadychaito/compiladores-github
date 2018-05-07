@@ -1,3 +1,4 @@
+
 package AST;
 
 import java.util.*;
@@ -5,17 +6,22 @@ import java.util.*;
 public class ForStatement extends Statement{
 
 	public void genC(PW pw){
-		System.out.println("for(");
+		pw.print("for(");
 		if(this.id != ""){
-			System.out.println(this.id + " = " + this.exprL + ";");
+			pw.print(this.id + " = ");
+			exprL.genC(pw);
+			pw.print(" ; ");
 		}
 		if(this.cond.getCompop() != ""){
 			cond.genC(pw);
+			pw.print(" ; ");
 		}
 		if(this.id2 != ""){
-			System.out.println(this.id2 + " = " + this.exprR + ";");
+			pw.print(this.id2 + " = ");
+			exprR.genC(pw);
+			pw.print(";");
 		}
-		System.out.println("){\n");
+		pw.println("){");
 		for(Statement e: stmt){
 			e.genC(pw);
 		}

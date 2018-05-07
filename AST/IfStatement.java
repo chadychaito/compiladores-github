@@ -11,21 +11,21 @@ public class IfStatement extends Statement{
 	}
 
 	public void genC(PW pw){
-		System.out.println("if (");
+		pw.print("if (");
 		cond.genC(pw);
-		System.out.println("){\n");
+		pw.println("){");
 		
 		for(Statement stmt : if_part){
 			stmt.genC(pw);
 		}
-		System.out.println("}\n");
+		pw.println("}");
 
 		if(!else_part.isEmpty()){
-			System.out.println("else {\n");
+			pw.println("else {");
 			for(Statement stmt : else_part){
 				stmt.genC(pw);
 			}
-			System.out.println("}");
+			pw.println("}");
 		}
 	}
 
