@@ -17,20 +17,24 @@ public class InOutStatement extends Statement{
 		else{
 			pw.print("scanf (");
 		}
+		
+		int currentIdentAux = pw.get(); //Guardando o valor da Identação atual
+		pw.set(0); //Setando pra 0
 
 		if(!id_list.isEmpty()){
 			Iterator it = id_list.iterator();
+
 	        while(it.hasNext()){
 	        	Variable e = (Variable) it.next();
 	        	e.genC(pw);
 	        	if(it.hasNext()){
-	        		pw.print(",");
+	        		pw.print(", ");
 	        	}
-
-	        }
+			}
 		} 
 
 		pw.print(");");
+		pw.set(currentIdentAux); //Setando para o valor da Identação atual
 		pw.println("");
 	}
 	

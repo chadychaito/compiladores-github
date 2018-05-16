@@ -29,10 +29,18 @@ public class PgmBody{
 	        pw.println("");
 	        pw.println("");
 		}
+
+		if(!func_declarations.isEmpty()){
  
-		for(FuncDecl f: func_declarations){
-			f.genC(pw);
+			for(FuncDecl f: func_declarations){
+				f.genC(pw);
+			}
 		}
+		else{
+			pw.println("void main(){");
+			pw.println("}");
+		}
+		pw.sub();
 	}
 
 	private ArrayList<Variable> decl;

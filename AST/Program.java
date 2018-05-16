@@ -15,7 +15,6 @@ public class Program{
 		
 		pgm_body.genC(pw);
 
-		pw.println("}");
 	}
 
 	

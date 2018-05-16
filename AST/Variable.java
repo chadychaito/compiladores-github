@@ -24,7 +24,10 @@ public class Variable {
             if(this.tipo != "")
                 pw.print(this.tipo + " " + this.ident);
             else{
+                int currentIdentAux = pw.get(); //Guardando o valor da Identação atual
+                pw.set(0); //Setando pra 0
                 pw.print(this.ident);
+                pw.set(currentIdentAux);
             }
         }
 

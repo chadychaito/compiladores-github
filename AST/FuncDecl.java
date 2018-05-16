@@ -29,9 +29,11 @@ public class FuncDecl{
 	        }
 	    }
 
-        pw.println("){");
-		
-        f_body.genC(pw);
+		pw.println("){");
+		pw.add();
+		f_body.genC(pw);
+		pw.sub();
+		pw.println("}");
     }
 
 	private String tipo;

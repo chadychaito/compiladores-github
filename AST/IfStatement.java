@@ -12,19 +12,28 @@ public class IfStatement extends Statement{
 
 	public void genC(PW pw){
 		pw.print("if (");
-		cond.genC(pw);
-		pw.println("){");
+		int currentIdentAux = pw.get(); //Guardando o valor da Identação atual
+		pw.set(0); //Setando pra 0
 		
+		cond.genC(pw);
+		
+		pw.println("){");
+		pw.set(currentIdentAux);
+		
+		pw.add();
 		for(Statement stmt : if_part){
 			stmt.genC(pw);
 		}
+		pw.sub();
 		pw.println("}");
 
 		if(!else_part.isEmpty()){
 			pw.println("else {");
+			pw.add();
 			for(Statement stmt : else_part){
 				stmt.genC(pw);
 			}
+			pw.sub();
 			pw.println("}");
 		}
 	}

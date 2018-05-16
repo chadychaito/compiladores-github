@@ -1,5 +1,4 @@
 package AST;
-
 import java.util.*;
 
 public class FuncBody{
@@ -13,15 +12,21 @@ public class FuncBody{
 		if(!decl.isEmpty()){
 
 			Iterator it = decl.iterator();
-	        while(it.hasNext()){
-	        	Variable e = (Variable) it.next();
-	        	e.genC(pw);
-	        	if(it.hasNext()){
-	        		pw.print(",");
-	        	}
+			
+			int currentIdentAux = pw.get(); //Guardando o valor da Identação atual
+			while(it.hasNext()){
 
-	        }
-	        pw.println(";");
+				Variable e = (Variable) it.next();
+				
+				e.genC(pw);
+				
+				pw.set(0); //Setando pra 0
+				if(it.hasNext()){
+	        		pw.print(", ");
+				}
+			}
+			pw.println(";");
+			pw.set(currentIdentAux);
 	        pw.println("");
 		} 
 		for(Statement stmt: list_stmt){

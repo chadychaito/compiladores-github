@@ -316,7 +316,7 @@ public class Compiler {
 	public ArrayList<Statement> stmt_list(){
     	//Verifica se STMT_LIST não é EMPTY
     	ArrayList<Statement> list_stmt = new ArrayList<Statement>();
-		if(lexer.token == Symbol.IDENT || lexer.token == Symbol.READ || lexer.token == Symbol.WRITE || lexer.token == Symbol.RETURN || lexer.token == Symbol.FOR){
+		if(lexer.token == Symbol.IDENT || lexer.token == Symbol.READ || lexer.token == Symbol.IF ||  lexer.token == Symbol.WRITE || lexer.token == Symbol.RETURN || lexer.token == Symbol.FOR){
 			list_stmt.add(stmt());
 			stmt_tail(list_stmt);
 		}
@@ -651,7 +651,8 @@ public class Compiler {
 		if(lexer.token != Symbol.IF){
 			error.signal("Faltou IF");
 		}
-		lexer.nextToken();
+
+		lexer.nextToken();		
 
 		//Se não tem '( '
 		if(lexer.token != Symbol.LPAR){
@@ -781,7 +782,7 @@ public class Compiler {
 
 		ArrayList<Statement> aux_stmt = stmt_list();
 
-		//Se não tem ENDFOR
+		//Se não tem ENDFORFS
 		if(lexer.token != Symbol.ENDFOR){
 			error.signal("Faltou ENDFOR");
 		}
