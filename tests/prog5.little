@@ -4,6 +4,7 @@ BEGIN
     BEGIN
         INT a , b , r , i;
         STRING texto := "hello world!" ;
+        FLOAT t, r;
 
         READ ( a , b );
         r := 0;

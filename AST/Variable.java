@@ -33,4 +33,8 @@ public class Variable {
 
     }
 
+    public String getTipo(){
+        return this.tipo;
+    }
+
 }

@@ -10,21 +10,26 @@ public class FuncBody{
 
 	public void genC(PW pw){
 		if(!decl.isEmpty()){
-
-			Iterator it = decl.iterator();
-			
 			int currentIdentAux = pw.get(); //Guardando o valor da Identação atual
+			Iterator it = decl.iterator(); //Criando iterador
+			Variable e = (Variable) it.next(); //Pegando primeiro elemento da DECL.
+			e.genC(pw); //Printando o primeiro elemento da DECL.
+			
 			while(it.hasNext()){
-
-				Variable e = (Variable) it.next();
-				
-				e.genC(pw);
-				
-				pw.set(0); //Setando pra 0
-				if(it.hasNext()){
-	        		pw.print(", ");
+				Variable aux = (Variable) it.next();
+				if(aux.getTipo() != ""){
+					pw.set(0); //Setando pw pra 0
+					pw.println(";");
+					pw.set(currentIdentAux);
 				}
+				else{
+					pw.set(0); //Setando pw pra 0
+					pw.print(", ");
+					pw.set(currentIdentAux);
+				}
+				aux.genC(pw);
 			}
+			pw.set(0); //Setando pw pra 0
 			pw.println(";");
 			pw.set(currentIdentAux);
 	        pw.println("");
